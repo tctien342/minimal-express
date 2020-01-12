@@ -29,6 +29,7 @@ Include minimal setup for backend starter
 > Running command by `yarn run <command>`
 
 - `setup`: install requirement for app running
+- `update`: update all dependencies to lastest
 - `build`: will build `src` to dist for running in produce mode
 - `dev`: running app in auto reload mode for developing
 - `start`: rebuild your app and start it

@@ -5,7 +5,8 @@
   "port": 3000,
   "private": true,
   "scripts": {
-    "setup": "concurrently \"npm install -g pm2 yarn nodemon\" \"yarn upgrade --latest\"",
+    "setup": "concurrently \"npm install -g pm2 yarn nodemon\" \"yarn run update\"",
+    "update": "concurrently \"yarn install\" \"yarn upgrade --latest\"",
     "build": "concurrently \"babel src -D --out-dir dist/ --ignore spec.js\"",
     "dev": "nodemon src/bin/www -w ./src -e \"js hbs\" --exec \"node -r babel-register \"",
     "start": "concurrently \"npm run build \" \"node dist/bin/www\"",
