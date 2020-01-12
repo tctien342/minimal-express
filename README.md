@@ -20,6 +20,7 @@ Include minimal setup for backend starter
 - Require NodeJS
 - Clone sources
 - Setup package.json as your app's name, about, version and running port
+- In `package.json` > `reload-server` script > change `expresstemplate` to your unique app name
 - Install `concurrently` by command: `npm install -g concurrently`
 - Running `npm run setup` will install requirement and update all dependencies to lastest
 
