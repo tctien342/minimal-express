@@ -36,3 +36,6 @@ Include minimal setup for backend starter
 - `start-build`: start your app without rebuild build
 - `reload-server`: for reload server while running in pm2
 - `server`: build and start server with pm2
+- `create-module`: create module and bind it to app
+  - Use like: `yarn run create-module <module name> <module url>` or `node let create module <module name> <module url>`
+    > Will create an module file in modules folder and bind it to app's router

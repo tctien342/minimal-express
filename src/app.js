@@ -3,11 +3,8 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-var defaultRouter = require("./routes/index");
+var routes = require("./modules/index");
 var app = express();
-
-// Init module
-import "./modules"
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -19,7 +16,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", defaultRouter);
+// Binding modules
+Object.keys(routes).forEach(key => {
+  console.log(routes);
+  app.use(key, routes[key]);
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

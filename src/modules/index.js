@@ -1,3 +1,6 @@
-// Setup modules to be ran at boot
-var initModule = require("./initModule");
-new initModule();
+import Default from "./default";
+import "./sysInfos";
+
+module.exports = {
+  "/": Default,
+};

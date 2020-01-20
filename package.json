@@ -12,13 +12,15 @@
     "start": "concurrently \"npm run build \" \"node dist/bin/www\"",
     "start-build": "node -r babel-register  dist/bin/www",
     "reload-server": "concurrently \"pm2 delete expresstemplate || true\" \"pm2 start --name=expresstemplate npm -- run start-build \"",
-    "server": "concurrently \"npm run build \" \"npm run reload-server\""
+    "server": "concurrently \"npm run build \" \"npm run reload-server\"",
+    "create-module": "node let create module"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~4.1.1",
     "express": "~4.17.1",
     "http-errors": "~1.7.3",
+    "line-reader": "^0.4.0",
     "morgan": "~1.9.1",
     "pug": "2.0.4"
   },
