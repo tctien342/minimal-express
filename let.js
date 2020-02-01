@@ -62,9 +62,7 @@ function addModule(moduleName, moduleUrl) {
   lineReader.eachLine("src/modules/index.js", (line, last) => {
     lineFirstWord = line.split(" ")[0];
     if (lineFirstWord !== "import" && !imported) {
-      outPutNew.push(
-        "import " + moduleImportName + ' from "./' + moduleName + '.js"'
-      );
+      outPutNew.push("import " + moduleImportName + ' from "./' + moduleName + '"');
       outPutNew.push(line);
       imported = true;
     } else if (line.split(" ")[0] === "") {
@@ -108,8 +106,12 @@ function addModule(moduleName, moduleUrl) {
         });
         outPutNew.forEach(value => file.write(`${value}\r\n`));
         file.end();
+        let dir = "src/modules/" + moduleName;
+        if (!fs.existsSync(dir)) {
+          fs.mkdirSync(dir);
+        }
         fs.createReadStream("src/modules/__template__").pipe(
-          fs.createWriteStream("src/modules/" + moduleName + ".js")
+          fs.createWriteStream("src/modules/" + moduleName + "/" + "index.js")
         );
       });
     }
