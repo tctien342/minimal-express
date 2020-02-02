@@ -1,0 +1,7 @@
+/**
+import function from "module"
+
+test("This test is running...", () => {
+    expect(function).toBe("value");
+});
+*/

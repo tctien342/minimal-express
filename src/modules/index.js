@@ -1,6 +1,6 @@
-import Default from "./default";
-import "./sysInfos";
+import Default from './index.default';
+import './index.info';
 
 module.exports = {
-  "/": Default,
+	'/': Default,
 };
