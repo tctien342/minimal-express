@@ -107,3 +107,4 @@ dist
 
 # Yarn ignore
 yarn.lock
+.DS_Store

@@ -1,5 +1,4 @@
 {
-  "presets": ["env", "flow"],
-  "plugins": ["transform-class-properties"],
-  "test": ["jest"]
+	"presets": ["@babel/preset-env"],
+	"plugins": ["transform-flow-strip-types"]
 }
