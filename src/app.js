@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -18,7 +19,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Binding modules
 Object.keys(routes).forEach(key => {
-	console.log(routes);
 	app.use(key, routes[key]);
 });
 

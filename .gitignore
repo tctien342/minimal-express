@@ -108,3 +108,5 @@ dist
 # Yarn ignore
 yarn.lock
 .DS_Store
+.vscode/settings.json
+.node-persist
