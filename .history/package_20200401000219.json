@@ -1,0 +1,46 @@
+{
+  "name": "minimal-express",
+  "version": "0.0.0",
+  "about": "Simple Nodejs Express Package",
+  "port": 3000,
+  "private": true,
+  "scripts": {
+    "setup": "concurrently \"npm install -g pm2 yarn nodemon\" \"yarn run update\"",
+    "update": "concurrently \"yarn install\" \"yarn upgrade --latest\"",
+    "build": "concurrently \"babel src -D --out-dir dist/ --ignore spec.js\"",
+    "dev": "nodemon src/bin/www -w ./src -e \"js hbs\" --exec \"node -r @babel/register -r dotenv/config\"",
+    "start": "concurrently \"npm run build \" \"node dist/bin/www\"",
+    "start-build": "node -r @babel/register -r dotenv/config dist/bin/www",
+    "reload-server": "concurrently \"pm2 delete minimal || true\" \"pm2 start --name=minimal npm -- run start-build \"",
+    "server": "concurrently \"npm run build \" \"npm run reload-server\"",
+    "create-module": "node let create module",
+    "test": "jest --setupFiles dotenv/config --passWithNoTests --forceExit"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~4.1.1",
+    "dotenv": "^8.2.0",
+    "express": "~4.17.1",
+    "http-errors": "~1.7.3",
+    "line-reader": "^0.4.0",
+    "morgan": "~1.9.1",
+    "node-fetch": "^2.6.0",
+    "node-persist": "^3.0.5",
+    "pug": "2.0.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-flow": "^7.8.3",
+    "@babel/register": "^7.8.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "concurrently": "^5.0.2",
+    "flow-bin": "^0.117.0",
+    "install": "^0.13.0",
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2"
+  }
+}

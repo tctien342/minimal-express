@@ -10,7 +10,7 @@
     "update": "concurrently \"yarn install\" \"yarn upgrade --latest\"",
     "build": "npm run build-ts && npm run tslint && npm run copy-assets",
 	"dev": "nodemon --watch src -e ts,ejs --exec npm run dev:start",
-	"dev:start": "npm-run-all build start-build",
+	"dev:start": "npm-run-all build start",
     "start": "npm-run-all \"npm run build \" \"node dist/src/bin/www\"",
     "start-build": "node dist/src/bin/www",
     "reload-server": "concurrently \"pm2 delete minimal || true\" \"pm2 start --name=minimal npm -- run start-build \"",

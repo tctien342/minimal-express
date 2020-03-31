@@ -5,22 +5,21 @@
   "port": 3000,
   "private": true,
   "scripts": {
-    "clean": "rimraf dist/*",
     "setup": "concurrently \"npm install -g pm2 yarn nodemon\" \"yarn run update\"",
     "update": "concurrently \"yarn install\" \"yarn upgrade --latest\"",
-    "build": "npm run build-ts && npm run tslint && npm run copy-assets",
-	"dev": "nodemon --watch src -e ts,ejs --exec npm run dev:start",
-	"dev:start": "npm-run-all build start-build",
-    "start": "npm-run-all \"npm run build \" \"node dist/src/bin/www\"",
-    "start-build": "node dist/src/bin/www",
+    "build": "npm run build-sass && npm run build-ts && npm run tslint",
+    "dev": "nodemon dist/server.js",
+    "start": "concurrently \"npm run build \" \"node dist/bin/www\"",
+    "start-build": "node dist/server.js",
     "reload-server": "concurrently \"pm2 delete minimal || true\" \"pm2 start --name=minimal npm -- run start-build \"",
-    "server": "npm-run-all \"npm run build \" \"npm run reload-server\"",
+    "server": "concurrently \"npm run build \" \"npm run reload-server\"",
     "create-module": "node let create module",
     "test": "jest --setupFiles dotenv/config --passWithNoTests --forceExit",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
-    "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "copy-assets": "ts-node copyAssets"
+    "build-sass": "node-sass src/public/css/main.scss dist/public/css/main.css",
+    "watch-sass": "node-sass -w src/public/css/main.scss dist/public/css/main.css",
+    "tslint": "tslint -c tslint.json -p tsconfig.json"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
@@ -34,8 +33,7 @@
     "node-fetch": "^2.6.0",
     "node-persist": "^3.0.5",
     "node-sass": "^4.13.1",
-    "pug": "2.0.4",
-    "shelljs": "^0.8.3"
+    "pug": "2.0.4"
   },
   "devDependencies": {
     "@types/async": "^2.0.50",
