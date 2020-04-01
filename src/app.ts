@@ -1,5 +1,5 @@
 import 'babel-polyfill';
-import { NextFunction } from 'express';
+import { NextFunction, Request, Response } from 'express';
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
@@ -29,7 +29,7 @@ app.use(function(next: NextFunction) {
 });
 
 // error handler
-app.use(function(err: any, req: any, res: any, next: NextFunction) {
+app.use(function(err: any, req: Request, res: Response, next: NextFunction) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
