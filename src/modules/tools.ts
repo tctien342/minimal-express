@@ -1,4 +1,4 @@
-import { NextFunction, Response } from 'express';
+import { NextFunction, Response, Request } from 'express';
 
 export const ERR_TYPE = {
   SUCCESS: 'Success',
@@ -30,10 +30,10 @@ export function setResponseJSON(req: Request, res: Response, next: NextFunction)
  * @param {express.NextFunction} next next function will be progress
  */
 export function checkRequestToken(req: Request, res: Response, next: NextFunction, token: string) {
-  if (!req.headers.hasOwnProperty(process.env.HEADER_TOKEN_PREFIX)) {
+  if (!req.headers.hasOwnProperty(process.env.HEADER_TOKEN_PREFIX) && !req.query.token) {
     res.send(responseBuilder({}, ERR_TYPE.INPUT, 'Missing services token'));
   } else {
-    if (req.headers.get(process.env.HEADER_TOKEN_PREFIX) === token) {
+    if ((req.headers[process.env.HEADER_TOKEN_PREFIX] || req.query.token) === token) {
       next();
     } else {
       res.send(responseBuilder({}, ERR_TYPE.INPUT, 'Token not accepted'));

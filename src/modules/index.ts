@@ -1,6 +1,6 @@
-import Default from './index.default';
-import './index.info';
-import './index.prototype';
+import Default from './default';
+import './console';
+import './prototype';
 import System from './system';
 
 module.exports = {

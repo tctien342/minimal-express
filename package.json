@@ -9,11 +9,11 @@
     "setup": "npm install -g pm2 yarn nodemon npm-run-all && yarn run update",
     "update": "npm-run-all \"yarn install\" \"yarn upgrade --latest\"",
     "build": "npm run build-ts && npm run tslint && npm run copy-assets",
-    "dev": "nodemon --watch src -e ts,ejs --exec npm run dev:start",
+    "dev": "nodemon",
     "dev:start": "npm-run-all build start-build",
     "start": "npm-run-all \"npm run build \" \"node dist/src/bin/www\"",
     "start-build": "node dist/src/bin/www",
-    "reload-server": "npm-run-all \"pm2 delete minimal || true\" \"pm2 start --name=minimal npm -- run start-build \"",
+    "reload-server": "npm-run-all \"pm2 delete minimal || true\" \"pm2 start --name=minimal npm -- run dev \"",
     "server": "npm-run-all \"npm run build \" \"npm run reload-server\"",
     "create-module": "node let create module",
     "test": "jest --setupFiles dotenv/config --passWithNoTests --forceExit",
@@ -59,5 +59,18 @@
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.2.1"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "npm run dev:start",
+    "ext": "ts"
   }
 }
